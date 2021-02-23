@@ -3,52 +3,120 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
   </head>
-  <body ng-app="angularJsappApp">
-    <!--[if lte IE 8]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+  <body ng-app="myApp" ng-controller="todoCtrl">
 
-    <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
+      Hi
+          
+    <a href="#!london">City London</a>
+    <a href="#!new-york">City New York</a>
+    <br/>
 
-            <a class="navbar-brand" href="#/">angularJsapp</a>
-          </div>
+    <div ng-view></div>
 
-          <div class="collapse">
+    <form ng-submit="todoAdd()">
+      <input type="text" ng-model="todoInput" size="50" placeholder="Add New">
+      <button type="submit" value="Add New">Add</button>
+    </form>
+  
+    <br/>
+  
+    <div ng-repeat="x in todoList">
+        <button ng-click="delete(x)">delete todo</button> 
+        <span ng-bind="x.todoText"></span>
+        <button ng-click="edit(x)" ng-model="show">Edit</button>
+        <input ng-show="x.edit" type="text" value="{{x.todoText}}" ng-model="x.todoText">
+        <button ng-show="x.edit" ng-click="makeChanges(x)">click here to change</button>
+    </div>
 
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
-            </ul>
-          </div>
+
+
+    
+
+
+      <div ng-controller="serviceController">
+        <div ng-repeat="x in arr">
+                <span ng-bind="x.userId"></span>
+                <span ng-bind="x.title"></span>
         </div>
-      </div>
+        <br/>
     </div>
 
-    <div class="container">
-    <div ng-view=""></div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+
+    <div ng-controller="level1controller">
+        
+        <input type="text" ng-model="txt1">
+        <button ng-click="broadcaster()">Submit</button>
+
+        <div>
+                Value received from child is : {{v}}
+        </div>
+
+            
+            <div ng-controller="level2controller">
+                    <input type="text" ng-model="txt2">
+                    <button ng-click="emitter()">Submit</button>
+                    <div>
+                            Value received from parent is : {{v}}
+                    </div>
+            </div>    
     </div>
 
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+    <div ng-controller="sibling1">
+        <input type="text" ng-model="sibcon" placeholder="add good thoughts">
+        <button ng-click="sibfunc()">Submit</button>
     </div>
+
+    <br/>
+
+    <div ng-controller="sibling2">
+        Data fetched from sibling controller
+            <ul>
+                <li ng-repeat="x in list">
+                    {{x}}
+                </li>
+            </ul>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
